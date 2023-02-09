@@ -224,3 +224,19 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     REFERENCES `jamul`.`orders` (`OrderId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);    
+    
+    CREATE TABLE `jamul`.`homedelivery` (
+  `Branch_Id` INT NOT NULL,
+  `Vehicle_Id` INT NOT NULL,
+  INDEX `f13_idx` (`Branch_Id` ASC) VISIBLE,
+  INDEX `f14_idx` (`Vehicle_Id` ASC) VISIBLE,
+  CONSTRAINT `f13`
+    FOREIGN KEY (`Branch_Id`)
+    REFERENCES `jamul`.`branch` (`BranchId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `f14`
+    FOREIGN KEY (`Vehicle_Id`)
+    REFERENCES `jamul`.`vehicle` (`VehicleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
