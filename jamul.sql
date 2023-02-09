@@ -37,8 +37,10 @@ CREATE TABLE `jamul`.`employee` (
 CREATE TABLE `jamul`.`branch` (
   `BranchId` INT NOT NULL AUTO_INCREMENT,
   `Location` VARCHAR(300) NOT NULL,
-  `NumEmployees` INT NULL DEFAULT 0,
-  `NumVehicles` INT NULL DEFAULT 0,
+  `City` VARCHAR(45) NOT NULL,
+  `State` VARCHAR(45) NOT NULL,
+  `NumEmployees` INT NOT NULL,
+  `NumVehicles` INT NOT NULL,
   PRIMARY KEY (`BranchId`));
 
 ALTER TABLE employee ADD EmployeeBranchId INT;
