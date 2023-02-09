@@ -240,3 +240,20 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     REFERENCES `jamul`.`vehicle` (`VehicleId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+    CREATE TABLE `jamul`.`manager` (
+  `Manager_Id` INT NOT NULL,
+  `Branch_Id` INT NOT NULL,
+  PRIMARY KEY (`Manager_Id`, `Branch_Id`),
+  INDEX `f66_idx` (`Branch_Id` ASC) VISIBLE,
+  CONSTRAINT `f55`
+    FOREIGN KEY (`Manager_Id`)
+    REFERENCES `jamul`.`employee` (`EmployeeId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `f66`
+    FOREIGN KEY (`Branch_Id`)
+    REFERENCES `jamul`.`branch` (`BranchId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
