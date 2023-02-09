@@ -1,5 +1,5 @@
 CREATE TABLE `jamul`.`product` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Id` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(90) NOT NULL,
   `Product_desc` VARCHAR(100) NULL,
   `Type` VARCHAR(45) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `jamul`.`product` (
   PRIMARY KEY (`Id`));
 
 CREATE TABLE `jamul`.`admin` (
-  `AdminId` INT NOT NULL AUTO_INCREMENT,
+  `AdminId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Salary` INT NOT NULL DEFAULT 0,
@@ -21,7 +21,7 @@ CREATE TABLE `jamul`.`admin` (
   PRIMARY KEY (`AdminId`));
 
 CREATE TABLE `jamul`.`employee` (
-  `EmployeeId` INT NOT NULL AUTO_INCREMENT,
+  `EmployeeId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Salary` INT NOT NULL DEFAULT 0,
@@ -35,7 +35,7 @@ CREATE TABLE `jamul`.`employee` (
   PRIMARY KEY (`EmployeeId`));
 
 CREATE TABLE `jamul`.`branch` (
-  `BranchId` INT NOT NULL AUTO_INCREMENT,
+  `BranchId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Location` VARCHAR(300) NOT NULL,
   `City` VARCHAR(45) NOT NULL,
   `State` VARCHAR(45) NOT NULL,
@@ -43,11 +43,11 @@ CREATE TABLE `jamul`.`branch` (
   `NumVehicles` INT NOT NULL,
   PRIMARY KEY (`BranchId`));
 
-ALTER TABLE employee ADD EmployeeBranchId INT;
+ALTER TABLE employee ADD EmployeeBranchId VARCHAR(90);
 ALTER TABLE employee ADD CONSTRAINT EmployeeBranchId FOREIGN KEY (EmployeeBranchId) REFERENCES  branch (BranchId);  
 
 CREATE TABLE `jamul`.`customer` (
-  `CustomerId` INT NOT NULL AUTO_INCREMENT,
+  `CustomerId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `ContactNum` VARCHAR(45) NOT NULL,
@@ -60,8 +60,8 @@ CREATE TABLE `jamul`.`customer` (
   PRIMARY KEY (`CustomerId`));  
 
 CREATE TABLE `jamul`.`branchcatalog` (
-  `BranchId` INT NOT NULL,
-  `ProductId` INT NULL,
+  `BranchId` VARCHAR(90) NOT NULL,
+  `ProductId` VARCHAR(90) NULL,
   `Quantity` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`BranchId`),
   INDEX `productId_idx` (`ProductId` ASC) VISIBLE,
@@ -77,11 +77,11 @@ CREATE TABLE `jamul`.`branchcatalog` (
     ON UPDATE NO ACTION);  
 
 CREATE TABLE `jamul`.`vehicle` (
-  `VehicleId` INT NOT NULL AUTO_INCREMENT,
+  `VehicleId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
   `Brand` VARCHAR(100) NOT NULL,
   `Model` VARCHAR(100) NOT NULL,
-  `VehicleBranchId` INT NOT NULL,
-  `DriverId` INT NOT NULL,
+  `VehicleBranchId` VARCHAR(90) NOT NULL,
+  `DriverId` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`VehicleId`),
   INDEX `DriverId_idx` (`DriverId` ASC) VISIBLE,
   INDEX `BranchId_idx` (`VehicleBranchId` ASC) VISIBLE,
@@ -97,9 +97,9 @@ CREATE TABLE `jamul`.`vehicle` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`orders` (
-  `OrderId` INT NOT NULL,
-  `BranchOrderId` INT NOT NULL,
-  `BranchCustomerId` INT NOT NULL,
+  `OrderId` VARCHAR(90) NOT NULL,
+  `BranchOrderId` VARCHAR(90) NOT NULL,
+  `BranchCustomerId` VARCHAR(90) NOT NULL,
   `TotalCost` INT NOT NULL,
   `Date` DATE NOT NULL,
   INDEX `BranchOrderId_idx` (`BranchOrderId` ASC) VISIBLE,
@@ -116,8 +116,8 @@ CREATE TABLE `jamul`.`orders` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`source` (
-  `SupplierId` INT NOT NULL AUTO_INCREMENT,
-  `SupplyingBranchId` INT NOT NULL,
+  `SupplierId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `SupplyingBranchId` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(100) NOT NULL,
   `Quantity` INT NOT NULL DEFAULT 0,
   `Date` DATE NOT NULL,
@@ -130,8 +130,8 @@ CREATE TABLE `jamul`.`source` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`suppliercatalog` (
-  `SupplierId` INT NOT NULL,
-  `SuppliedProductId` INT NOT NULL,
+  `SupplierId` VARCHAR(90) NOT NULL,
+  `SuppliedProductId` VARCHAR(90) NOT NULL,
   `SuppliedProductName` VARCHAR(90) NOT NULL,
   `SuppliedProductDesc` VARCHAR(200) NULL,
   `SuppliedProductPrice` INT NOT NULL,
@@ -151,8 +151,8 @@ CREATE TABLE `jamul`.`suppliercatalog` (
 
 
 CREATE TABLE `jamul`.`sale` (
-  `ProductId` INT NOT NULL,
-  `BranchId` INT NOT NULL,
+  `ProductId` VARCHAR(90) NOT NULL,
+  `BranchId` VARCHAR(90) NOT NULL,
   `Date` DATE NOT NULL,
   `Quantity` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`ProductId`, `BranchId`),
@@ -169,9 +169,9 @@ CREATE TABLE `jamul`.`sale` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `jamul`.`addtocart` (
-  `CustomerId` INT NOT NULL,
-  `BranchId` INT NOT NULL,
-  `ProductId` INT NOT NULL,
+  `CustomerId` VARCHAR(90) NOT NULL,
+  `BranchId` VARCHAR(90) NOT NULL,
+  `ProductId` VARCHAR(90) NOT NULL,
   `Quantity` INT NOT NULL,
   PRIMARY KEY (`CustomerId`, `BranchId`, `ProductId`),
   INDEX `f3_idx` (`BranchId` ASC) VISIBLE,
@@ -194,8 +194,8 @@ CREATE TABLE `jamul`.`addtocart` (
 
 ALTER TABLE orders ADD PRIMARY KEY(OrderId);
 CREATE TABLE `jamul`.`orderproductlist` (
-  `OrderId` INT NOT NULL,
-  `ProductId` INT NOT NULL,
+  `OrderId` VARCHAR(90) NOT NULL,
+  `ProductId` VARCHAR(90) NOT NULL,
   `ProductName` VARCHAR(45) NOT NULL,
   `ProductQuantity` INT NOT NULL,
   PRIMARY KEY (`OrderId`),
@@ -212,8 +212,8 @@ CREATE TABLE `jamul`.`orderproductlist` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`customerorderhistory` (
-  `CustomerId` INT NOT NULL,
-  `OrderId` INT NOT NULL,
+  `CustomerId` VARCHAR(90) NOT NULL,
+  `OrderId` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`OrderId`),
   INDEX `f9_idx` (`CustomerId` ASC) VISIBLE,
   CONSTRAINT `f9`
@@ -228,8 +228,8 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON UPDATE NO ACTION);    
     
     CREATE TABLE `jamul`.`homedelivery` (
-  `Branch_Id` INT NOT NULL,
-  `Vehicle_Id` INT NOT NULL,
+  `Branch_Id` VARCHAR(90) NOT NULL,
+  `Vehicle_Id` VARCHAR(90) NOT NULL,
   INDEX `f13_idx` (`Branch_Id` ASC) VISIBLE,
   INDEX `f14_idx` (`Vehicle_Id` ASC) VISIBLE,
   CONSTRAINT `f13`
@@ -244,8 +244,8 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON UPDATE NO ACTION);
     
     CREATE TABLE `jamul`.`manager` (
-  `Manager_Id` INT NOT NULL,
-  `Branch_Id` INT NOT NULL,
+  `Manager_Id` VARCHAR(90) NOT NULL,
+  `Branch_Id` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`Manager_Id`, `Branch_Id`),
   INDEX `f66_idx` (`Branch_Id` ASC) VISIBLE,
   CONSTRAINT `f55`
@@ -260,8 +260,8 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`shoppingcart` (
-  `CustomerId` INT NOT NULL,
-  `OrderId` INT NOT NULL,
+  `CustomerId` VARCHAR(90) NOT NULL,
+  `OrderId` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`CustomerId`),
   INDEX `f97_idx` (`OrderId` ASC) VISIBLE,
   CONSTRAINT `f96`
