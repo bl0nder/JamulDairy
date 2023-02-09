@@ -257,3 +257,18 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE TABLE `jamul`.`shoppingcart` (
+  `CustomerId` INT NOT NULL,
+  `OrderId` INT NOT NULL,
+  PRIMARY KEY (`CustomerId`),
+  INDEX `f97_idx` (`OrderId` ASC) VISIBLE,
+  CONSTRAINT `f96`
+    FOREIGN KEY (`CustomerId`)
+    REFERENCES `jamul`.`customer` (`CustomerId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `f97`
+    FOREIGN KEY (`OrderId`)
+    REFERENCES `jamul`.`orders` (`OrderId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
