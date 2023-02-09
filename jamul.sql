@@ -27,7 +27,7 @@ CREATE TABLE `jamul`.`employee` (
   `Salary` INT NOT NULL DEFAULT 0,
   `ContactNum` VARCHAR(45) NOT NULL,
   `Birthday` DATE NOT NULL,
-  `HouseNum` INT NOT NULL,
+  `HouseNum` VARCHAR(45) NOT NULL,
   `StreetNum` VARCHAR(40) NULL DEFAULT ' ',
   `City` VARCHAR(45) NULL DEFAULT ' ',
   `State` VARCHAR(45) NOT NULL DEFAULT ' ',
