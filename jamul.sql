@@ -4,7 +4,7 @@ CREATE TABLE `jamul`.`product` (
   `Product_desc` VARCHAR(100) NULL,
   `Type` VARCHAR(45) NOT NULL,
   `Unit_price` INT NOT NULL,
-  PRIMARY KEY (`Id`));
+  PRIMARY KEY (`Id`))
 
 CREATE TABLE `jamul`.`admin` (
   `AdminId` INT NOT NULL AUTO_INCREMENT,
@@ -18,7 +18,7 @@ CREATE TABLE `jamul`.`admin` (
   `City` VARCHAR(45) NULL DEFAULT ' ',
   `State` VARCHAR(45) NOT NULL DEFAULT ' ',
   `Pincode` INT NOT NULL,
-  PRIMARY KEY (`AdminId`));
+  PRIMARY KEY (`AdminId`))
 
 CREATE TABLE `jamul`.`employee` (
   `EmployeeId` INT NOT NULL AUTO_INCREMENT,
@@ -32,17 +32,17 @@ CREATE TABLE `jamul`.`employee` (
   `City` VARCHAR(45) NULL DEFAULT ' ',
   `State` VARCHAR(45) NOT NULL DEFAULT ' ',
   `Pincode` INT NOT NULL,
-  PRIMARY KEY (`EmployeeId`));
+  PRIMARY KEY (`EmployeeId`))
 
 CREATE TABLE `jamul`.`branch` (
   `BranchId` INT NOT NULL AUTO_INCREMENT,
   `Location` VARCHAR(300) NOT NULL,
   `NumEmployees` INT NULL DEFAULT 0,
   `NumVehicles` INT NULL DEFAULT 0,
-  PRIMARY KEY (`BranchId`));
+  PRIMARY KEY (`BranchId`))
 
-ALTER TABLE employee ADD EmployeeBranchId INT;
-ALTER TABLE employee ADD CONSTRAINT EmployeeBranchId FOREIGN KEY (EmployeeBranchId) REFERENCES  branch (BranchId);  
+ALTER TABLE employee ADD EmployeeBranchId INT
+ALTER TABLE employee ADD CONSTRAINT EmployeeBranchId FOREIGN KEY (EmployeeBranchId) REFERENCES  branch (BranchId)
 
 CREATE TABLE `jamul`.`customer` (
   `CustomerId` INT NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE `jamul`.`customer` (
   `City` VARCHAR(45) NULL DEFAULT ' ',
   `State` VARCHAR(45) NOT NULL DEFAULT ' ',
   `Pincode` INT NOT NULL,
-  PRIMARY KEY (`CustomerId`));  
+  PRIMARY KEY (`CustomerId`)) 
 
 CREATE TABLE `jamul`.`branchcatalog` (
   `BranchId` INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE `jamul`.`branchcatalog` (
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);  
+    ON UPDATE NO ACTION)  
 
 CREATE TABLE `jamul`.`vehicle` (
   `VehicleId` INT NOT NULL AUTO_INCREMENT,
@@ -92,7 +92,7 @@ CREATE TABLE `jamul`.`vehicle` (
     FOREIGN KEY (`VehicleBranchId`)
     REFERENCES `jamul`.`branch` (`BranchId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
 CREATE TABLE `jamul`.`orders` (
   `OrderId` INT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `jamul`.`orders` (
     FOREIGN KEY (`BranchCustomerId`)
     REFERENCES `jamul`.`customer` (`CustomerId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
 CREATE TABLE `jamul`.`source` (
   `SupplierId` INT NOT NULL AUTO_INCREMENT,
@@ -125,7 +125,7 @@ CREATE TABLE `jamul`.`source` (
     FOREIGN KEY (`SupplyingBranchId`)
     REFERENCES `jamul`.`branch` (`BranchId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
 CREATE TABLE `jamul`.`suppliercatalog` (
   `SupplierId` INT NOT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE `jamul`.`suppliercatalog` (
     FOREIGN KEY (`SuppliedProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
 
 CREATE TABLE `jamul`.`sale` (
@@ -164,7 +164,7 @@ CREATE TABLE `jamul`.`sale` (
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
     
 CREATE TABLE `jamul`.`addtocart` (
   `CustomerId` INT NOT NULL,
@@ -188,9 +188,9 @@ CREATE TABLE `jamul`.`addtocart` (
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
-ALTER TABLE orders ADD PRIMARY KEY(OrderId);
+ALTER TABLE orders ADD PRIMARY KEY(OrderId)
 CREATE TABLE `jamul`.`orderproductlist` (
   `OrderId` INT NOT NULL,
   `ProductId` INT NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE `jamul`.`orderproductlist` (
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION
 
 CREATE TABLE `jamul`.`customerorderhistory` (
   `CustomerId` INT NOT NULL,
@@ -223,7 +223,7 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     FOREIGN KEY (`OrderId`)
     REFERENCES `jamul`.`orders` (`OrderId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);    
+    ON UPDATE NO ACTION)    
     
     CREATE TABLE `jamul`.`homedelivery` (
   `Branch_Id` INT NOT NULL,
@@ -239,7 +239,7 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     FOREIGN KEY (`Vehicle_Id`)
     REFERENCES `jamul`.`vehicle` (`VehicleId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
     
     CREATE TABLE `jamul`.`manager` (
   `Manager_Id` INT NOT NULL,
@@ -255,7 +255,7 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     FOREIGN KEY (`Branch_Id`)
     REFERENCES `jamul`.`branch` (`BranchId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
 
 CREATE TABLE `jamul`.`shoppingcart` (
   `CustomerId` INT NOT NULL,
