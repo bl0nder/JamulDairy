@@ -50,7 +50,7 @@ CREATE TABLE `jamul`.`customer` (
   `Password` VARCHAR(45) NOT NULL,
   `ContactNum` VARCHAR(45) NOT NULL,
   `Birthday` DATE NOT NULL,
-  `HouseNum` INT NOT NULL,
+  `HouseNum` VARCHAR(45) NOT NULL,
   `StreetNum` VARCHAR(40) NULL DEFAULT ' ',
   `City` VARCHAR(45) NULL DEFAULT ' ',
   `State` VARCHAR(45) NOT NULL DEFAULT ' ',
