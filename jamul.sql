@@ -1,5 +1,5 @@
 CREATE TABLE `jamul`.`product` (
-  `Id` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `Id` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(90) NOT NULL,
   `Product_desc` VARCHAR(100) NULL,
   `Type` VARCHAR(45) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `jamul`.`product` (
   PRIMARY KEY (`Id`));
 
 CREATE TABLE `jamul`.`admin` (
-  `AdminId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `AdminId` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Salary` INT NOT NULL DEFAULT 0,
@@ -21,7 +21,7 @@ CREATE TABLE `jamul`.`admin` (
   PRIMARY KEY (`AdminId`));
 
 CREATE TABLE `jamul`.`employee` (
-  `EmployeeId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `EmployeeId` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Salary` INT NOT NULL DEFAULT 0,
@@ -35,7 +35,7 @@ CREATE TABLE `jamul`.`employee` (
   PRIMARY KEY (`EmployeeId`));
 
 CREATE TABLE `jamul`.`branch` (
-  `BranchId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `BranchId` VARCHAR(90) NOT NULL,
   `Location` VARCHAR(300) NOT NULL,
   `City` VARCHAR(45) NOT NULL,
   `State` VARCHAR(45) NOT NULL,
@@ -47,7 +47,7 @@ ALTER TABLE employee ADD EmployeeBranchId VARCHAR(90);
 ALTER TABLE employee ADD CONSTRAINT EmployeeBranchId FOREIGN KEY (EmployeeBranchId) REFERENCES  branch (BranchId);  
 
 CREATE TABLE `jamul`.`customer` (
-  `CustomerId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `CustomerId` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `ContactNum` VARCHAR(45) NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `jamul`.`branchcatalog` (
     ON UPDATE NO ACTION);  
 
 CREATE TABLE `jamul`.`vehicle` (
-  `VehicleId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `VehicleId` VARCHAR(90) NOT NULL,
   `Brand` VARCHAR(100) NOT NULL,
   `Model` VARCHAR(100) NOT NULL,
   `VehicleBranchId` VARCHAR(90) NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `jamul`.`orders` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`source` (
-  `SupplierId` VARCHAR(90) NOT NULL AUTO_INCREMENT,
+  `SupplierId` VARCHAR(90) NOT NULL,
   `SupplyingBranchId` VARCHAR(90) NOT NULL,
   `Name` VARCHAR(100) NOT NULL,
   `Quantity` INT NOT NULL DEFAULT 0,
@@ -224,22 +224,6 @@ CREATE TABLE `jamul`.`customerorderhistory` (
   CONSTRAINT `f10`
     FOREIGN KEY (`OrderId`)
     REFERENCES `jamul`.`orders` (`OrderId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);    
-    
-    CREATE TABLE `jamul`.`homedelivery` (
-  `Branch_Id` VARCHAR(90) NOT NULL,
-  `Vehicle_Id` VARCHAR(90) NOT NULL,
-  INDEX `f13_idx` (`Branch_Id` ASC) VISIBLE,
-  INDEX `f14_idx` (`Vehicle_Id` ASC) VISIBLE,
-  CONSTRAINT `f13`
-    FOREIGN KEY (`Branch_Id`)
-    REFERENCES `jamul`.`branch` (`BranchId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `f14`
-    FOREIGN KEY (`Vehicle_Id`)
-    REFERENCES `jamul`.`vehicle` (`VehicleId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
