@@ -236,11 +236,6 @@ CREATE TABLE `jamul`.`cart_items` (
     REFERENCES `jamul`.`branch` (`BranchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fty`
-    FOREIGN KEY (`CustomerId`)
-    REFERENCES `jamul`.`customer` (`CustomerId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `ftu`
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
