@@ -103,15 +103,9 @@ CREATE TABLE `jamul`.`orders` (
   `TotalCost` INT NOT NULL,
   `Date` DATE NOT NULL,
   INDEX `BranchOrderId_idx` (`BranchOrderId` ASC) VISIBLE,
-  INDEX `CustomerOrderId_idx` (`BranchCustomerId` ASC) VISIBLE,
   CONSTRAINT `BranchOrderId`
     FOREIGN KEY (`BranchOrderId`)
     REFERENCES `jamul`.`branch` (`BranchId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `CustomerOrderId`
-    FOREIGN KEY (`BranchCustomerId`)
-    REFERENCES `jamul`.`customer` (`CustomerId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
