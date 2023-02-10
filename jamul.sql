@@ -242,18 +242,36 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `jamul`.`shoppingcart` (
+CREATE TABLE `jamul`.`shoppingcarts` (
   `CustomerId` VARCHAR(90) NOT NULL,
-  `OrderId` VARCHAR(90) NOT NULL,
+  `TotalCost` INT NOT NULL,
   PRIMARY KEY (`CustomerId`),
-  INDEX `f97_idx` (`OrderId` ASC) VISIBLE,
-  CONSTRAINT `f96`
+  CONSTRAINT `ftt`
+    FOREIGN KEY (`CustomerId`)
+    REFERENCES `jamul`.`customer` (`CustomerId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+CREATE TABLE `jamul`.`shoppingcartitems` (
+  `CustomerId` VARCHAR(90) NOT NULL,
+  `ProductId` VARCHAR(90) NOT NULL,
+  `ProductBranchId` VARCHAR(90) NOT NULL,
+  `ProductQuantity` INT NOT NULL,
+  PRIMARY KEY (`CustomerId`, `ProductId`),
+  INDEX `ftr_idx` (`ProductBranchId` ASC) VISIBLE,
+  INDEX `ftu_idx` (`ProductId` ASC) VISIBLE,
+  CONSTRAINT `ftr`
+    FOREIGN KEY (`ProductBranchId`)
+    REFERENCES `jamul`.`branch` (`BranchId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fty`
     FOREIGN KEY (`CustomerId`)
     REFERENCES `jamul`.`customer` (`CustomerId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `f97`
-    FOREIGN KEY (`OrderId`)
-    REFERENCES `jamul`.`orders` (`OrderId`)
+  CONSTRAINT `ftu`
+    FOREIGN KEY (`ProductId`)
+    REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
