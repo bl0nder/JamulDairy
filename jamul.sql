@@ -168,32 +168,9 @@ CREATE TABLE `jamul`.`sale` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-CREATE TABLE `jamul`.`addtocart` (
-  `CustomerId` VARCHAR(90) NOT NULL,
-  `BranchId` VARCHAR(90) NOT NULL,
-  `ProductId` VARCHAR(90) NOT NULL,
-  `Quantity` INT NOT NULL,
-  PRIMARY KEY (`CustomerId`, `BranchId`, `ProductId`),
-  INDEX `f3_idx` (`BranchId` ASC) VISIBLE,
-  INDEX `f5_idx` (`ProductId` ASC) VISIBLE,
-  CONSTRAINT `f3`
-    FOREIGN KEY (`BranchId`)
-    REFERENCES `jamul`.`branch` (`BranchId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `f4`
-    FOREIGN KEY (`CustomerId`)
-    REFERENCES `jamul`.`customer` (`CustomerId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `f5`
-    FOREIGN KEY (`ProductId`)
-    REFERENCES `jamul`.`product` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
 
 ALTER TABLE orders ADD UNIQUE(OrderId);
-CREATE TABLE `jamul`.`orderproductlist` (
+CREATE TABLE `jamul`.`order_product_list` (
   `OrderId` VARCHAR(90) NOT NULL,
   `ProductId` VARCHAR(90) NOT NULL,
   `ProductName` VARCHAR(45) NOT NULL,
@@ -210,7 +187,7 @@ CREATE TABLE `jamul`.`orderproductlist` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `jamul`.`customerorderhistory` (
+CREATE TABLE `jamul`.`customer_order_history` (
   `CustomerId` VARCHAR(90) NOT NULL,
   `OrderId` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`OrderId`),
@@ -242,7 +219,7 @@ CREATE TABLE `jamul`.`customerorderhistory` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `jamul`.`shoppingcarts` (
+CREATE TABLE `jamul`.`add_to_cart` (
   `CustomerId` VARCHAR(90) NOT NULL,
   `TotalCost` INT NOT NULL,
   PRIMARY KEY (`CustomerId`),
@@ -252,7 +229,7 @@ CREATE TABLE `jamul`.`shoppingcarts` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-CREATE TABLE `jamul`.`shoppingcartitems` (
+CREATE TABLE `jamul`.`cart_items` (
   `CustomerId` VARCHAR(90) NOT NULL,
   `ProductId` VARCHAR(90) NOT NULL,
   `ProductBranchId` VARCHAR(90) NOT NULL,
