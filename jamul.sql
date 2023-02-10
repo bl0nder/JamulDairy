@@ -155,7 +155,7 @@ CREATE TABLE `jamul`.`sale` (
   `BranchId` VARCHAR(90) NOT NULL,
   `Date` DATE NOT NULL,
   `Quantity` INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`ProductId`, `BranchId`),
+  PRIMARY KEY (`BranchId`),
   INDEX `f1_idx` (`BranchId` ASC) VISIBLE,
   CONSTRAINT `f1`
     FOREIGN KEY (`BranchId`)
