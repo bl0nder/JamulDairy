@@ -61,20 +61,20 @@ CREATE TABLE `jamul`.`customer` (
 
 CREATE TABLE `jamul`.`branchcatalog` (
   `BranchId` VARCHAR(90) NOT NULL,
-  `ProductId` VARCHAR(90) NULL,
-  `Quantity` INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`BranchId`),
-  INDEX `productId_idx` (`ProductId` ASC) VISIBLE,
-  CONSTRAINT `branchId`
+  `ProductId` VARCHAR(90) NOT NULL,
+  `Quantity` INT NOT NULL,
+  PRIMARY KEY (`BranchId`, `ProductId`),
+  INDEX `F456_idx` (`ProductId` ASC) VISIBLE,
+  CONSTRAINT `F3333`
     FOREIGN KEY (`BranchId`)
     REFERENCES `jamul`.`branch` (`BranchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `productId`
+  CONSTRAINT `F456`
     FOREIGN KEY (`ProductId`)
     REFERENCES `jamul`.`product` (`Id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);  
+    ON UPDATE NO ACTION);
 
 CREATE TABLE `jamul`.`vehicle` (
   `VehicleId` VARCHAR(90) NOT NULL,
