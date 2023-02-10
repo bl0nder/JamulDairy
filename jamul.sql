@@ -136,7 +136,7 @@ CREATE TABLE `jamul`.`suppliercatalog` (
   `SuppliedProductDesc` VARCHAR(200) NULL,
   `SuppliedProductPrice` INT NOT NULL,
   `SuppliedProductQuantity` INT NOT NULL,
-  PRIMARY KEY (`SupplierId`),
+  PRIMARY KEY (`SupplierId`, `SuppliedProductId`),
   INDEX `SuppliedProductId_idx` (`SuppliedProductId` ASC) VISIBLE,
   CONSTRAINT `SupplierId`
     FOREIGN KEY (`SupplierId`)
