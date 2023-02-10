@@ -192,13 +192,12 @@ CREATE TABLE `jamul`.`addtocart` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-ALTER TABLE orders ADD PRIMARY KEY(OrderId);
+ALTER TABLE orders ADD UNIQUE(OrderId);
 CREATE TABLE `jamul`.`orderproductlist` (
   `OrderId` VARCHAR(90) NOT NULL,
   `ProductId` VARCHAR(90) NOT NULL,
   `ProductName` VARCHAR(45) NOT NULL,
   `ProductQuantity` INT NOT NULL,
-  PRIMARY KEY (`OrderId`),
   INDEX `f7_idx` (`ProductId` ASC) VISIBLE,
   CONSTRAINT `f6`
     FOREIGN KEY (`OrderId`)
