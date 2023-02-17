@@ -75,6 +75,13 @@ FROM branchcatalog ORDER BY BranchId ASC;
 INSERT INTO admin (AdminId, Name, Password, Salary, ContactNum, Birthday, HouseNum, StreetNum, City, State, Pincode)
 SELECT EmployeeId, Name, Password, Salary, ContactNum, Birthday, HouseNum, StreetNum, City, State, Pincode FROM employee WHERE Salary >= 2000000;
 
+-- Testing primary key duplication (gives error)
+INSERT INTO product (Id, Name, Product_desc, Type, Unit_price)
+VALUES ('P000147', 'test', 'test description', 'type', 500);
+
+--Testing primary key existence (gives null values)
+SELECT * FROM product WHERE Id='P000000';
+
 -- Alias and Distinct
 SELECT DISTINCT BranchOrderId AS DistinctBranchId, (SELECT COUNT(orderId) FROM orders WHERE BranchOrderId = DistinctBranchId)
 FROM orders
