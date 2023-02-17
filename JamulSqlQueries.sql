@@ -82,6 +82,14 @@ VALUES ('P000147', 'test', 'test description', 'type', 500);
 --Testing primary key existence (gives null values)
 SELECT * FROM product WHERE Id='P000000';
 
+-- Inserting negative price value
+insert into product (Id, Name, Product_desc, Type, Unit_price)
+values ('P000001', 'negative', 'test description', 'type', -10);
+
+-- Inserting invalid foreign key
+insert into customer_order_history (CustomerId, OrderId)
+values ('C000995', 'O000000');
+
 -- Alias and Distinct
 SELECT DISTINCT BranchOrderId AS DistinctBranchId, (SELECT COUNT(orderId) FROM orders WHERE BranchOrderId = DistinctBranchId)
 FROM orders
