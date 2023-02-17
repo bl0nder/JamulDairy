@@ -39,14 +39,6 @@ FROM customer
 INNER JOIN add_to_cart ON customer.CustomerId = add_to_cart.CustomerId) 
 as T where TotalCost in (select MAX(TotalCost) from add_to_cart);
 
--- Division Query
-SELECT CustomerId, Name 
-FROM customer 
-WHERE NOT exists
-(SELECT ProductId FROM cart_items WHERE
- ProductId in (Select ProductId from cart_items where CustomerId = 'C000995') and 
- ProductId not in (Select ProductId from cart_items, customer where (customer.CustomerId = cart_items.CustomerId)));
-
 -- In
 SELECT Name
 FROM Employee
